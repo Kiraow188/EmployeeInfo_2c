@@ -30,15 +30,19 @@ public class CustomAdapter extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        LayoutInflater inflater = (LayoutInflater) parent_context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rowView = inflater.inflate(layout_id, parent, false);
-        TextView tvName = rowView.findViewById(R.id.tvName);
-        TextView tvTitle = rowView.findViewById(R.id.tvTitle);
-        TextView tvSalary = rowView.findViewById(R.id.tvSalary);
-        EmployeeInfo currentItem = employeeList.get(position);
-        tvName.setText(currentItem.getName());
-        tvTitle.setText(currentItem.getTitle());
-        tvSalary.setText(Double.toString(currentItem.getSalary()));
+        View rowView = convertView;
+        if (rowView == null){
+            LayoutInflater inflater = (LayoutInflater) parent_context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            rowView = inflater.inflate(layout_id, parent, false);
+        }
+            TextView tvName = rowView.findViewById(R.id.tvName);
+            TextView tvTitle = rowView.findViewById(R.id.tvTitle);
+            TextView tvSalary = rowView.findViewById(R.id.tvSalary);
+            EmployeeInfo currentItem = employeeList.get(position);
+            tvName.setText(currentItem.getName());
+            tvTitle.setText(currentItem.getTitle());
+            tvSalary.setText(Double.toString(currentItem.getSalary()));
+
         return rowView;
     }
 }
